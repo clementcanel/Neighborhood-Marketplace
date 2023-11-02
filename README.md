@@ -1,9 +1,9 @@
-# Group-4
 Section 14
 Team Number: GROUP 4 
 Team Name & Application Name: Neighborhood Service Exchange
 july4370/Group-4: CSCI 3308 Group 4 Project (github.com)
 
+MEET WITH TA at 5:15pm ON Tuesdays
 
 Clement Canel clca3470@colorado.edu clementcanel
 Justin Lynn july4370@colorado.edu july4370
@@ -24,9 +24,25 @@ Communicating through text
 UML
 https://docs.google.com/drawings/d/18BT1FOwhJVCmUSslcMsSYRVu0SS8a9Sb7WHMubTaoKg/edit?usp=sharing 
 
-Meeting Plans
+Meeting Plans - 
 Monday  → 5:30 PM
 Tuesday → 1:00 PM
 Friday → 10:00 PM
 Sunday → 11:00 AM
+
+
+
+
+Overall
+ GUI, a database, API data source(optional), a middle layer connecting your UI to your data.
+
+1.safety 
+2. neighborly/community
+
+Name Ideas
+Great Neighbor
+Friendly Neighbor
+
+Wireframe:
+https://lucid.app/lucidchart/ebeee19a-02fe-4976-85cf-55efdafe2bb4/edit?viewport_loc=-2185%2C-890%2C2569%2C1562%2C0_0&invitationId=inv_115a273e-89ce-4757-9078-c81999e10d16
 
