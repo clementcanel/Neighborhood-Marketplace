@@ -46,3 +46,6 @@ Friendly Neighbor
 Wireframe:
 https://lucid.app/lucidchart/ebeee19a-02fe-4976-85cf-55efdafe2bb4/edit?viewport_loc=-2185%2C-890%2C2569%2C1562%2C0_0&invitationId=inv_115a273e-89ce-4757-9078-c81999e10d16
 
+Link to Google Doc 
+https://docs.google.com/document/d/1U7eGfses0jIhPSrv3PT-4bGBbwqAmpRltvlwO6isLZc/edit?usp=sharing
+
