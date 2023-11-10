@@ -1,6 +1,6 @@
 Features: Login. Logout. 
 
-# Login: 
+## Login: 
 
 Test Environment:
 
@@ -21,3 +21,19 @@ Session Persistence: Login and close the browser without logging out. Reopen the
 
 User Acceptance Testers:
 A mix of internal team members and a select group of external users representing different user roles.
+
+## Logout 
+
+Test Environment:
+Similar to the Login feature, this test should be conducted across various devices and browsers.
+
+Test Data:
+Logged-in user accounts.
+
+Test Cases:
+Successful Logout: Click the logout button and ensure the user is logged out and redirected to the login page.
+Session Termination: After logout, attempt to navigate back and ensure the session is terminated and does not allow access to the previous state.
+Cookie Clearance: Verify that all session-related cookies are cleared upon logout.
+User Acceptance Testers:
+
+Internal team members and a few external users who participated in the login feature testing.
