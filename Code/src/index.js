@@ -63,6 +63,37 @@ app.use(
 app.get('/welcome', (req, res) => {
     res.json({status: 'success', message: 'Welcome!'});
   });
+
+
+app.get('/login', (req, res) => {
+    res.render('pages/login')
+});
+
+
+
+app.post('/login', async (req, res) => {
+    //hash the password using bcrypt library
+    try {
+        const query = `select * from users where username = $1`;
+        // To-DO: Insert username and hashed password into the 'users' table
+        const user = await db.oneOrNone(query, req.body.username);
+        if(!user) {
+          throw new Error ("Incorrect username or password.");
+        }
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if (!match) {
+            throw new Error ("Incorrect username or password.");
+        }
+        req.session.user = user;
+        req.session.save();
+        
+    } catch (error) {
+        res.render("pages/register", {
+            error: true,
+            message: error.message,
+        });
+    }
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
