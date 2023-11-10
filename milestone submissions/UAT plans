@@ -1,4 +1,4 @@
-Features: Login. Logout. 
+Features: Login. Logout. Register.
 
 ## Login: 
 
@@ -33,7 +33,25 @@ Logged-in user accounts.
 Test Cases:
 Successful Logout: Click the logout button and ensure the user is logged out and redirected to the login page.
 Session Termination: After logout, attempt to navigate back and ensure the session is terminated and does not allow access to the previous state.
-Cookie Clearance: Verify that all session-related cookies are cleared upon logout.
-User Acceptance Testers:
 
+User Acceptance Testers:
 Internal team members and a few external users who participated in the login feature testing.
+
+## Register
+
+Test Environment:
+Similar to the Login feature, this test should be conducted across various devices and browsers.
+
+Test Data:
+Sample user data for registration, including names, email addresses, phone numbers, and passwords.
+Variations of data inputs, including valid and invalid data for each field.
+
+Test Cases:
+Successful Registration: Complete the registration form with all valid data and submit. Verify successful registration with a confirmation message and an email confirmation (if applicable).
+Invalid Data Submission: Attempt to register with invalid data (e.g., incorrect email format, weak password). Expect to see relevant error messages and no account creation.
+Incomplete Form Submission: Attempt to register without filling in all required fields. Expect to see error messages indicating mandatory fields.
+Duplicate Account Handling: Attempt to register with an email address or username already in use. Verify the system detects the duplication and alerts the user.
+User Agreement Compliance: Ensure that the registration process includes user agreement or terms and conditions acceptance, and verify that it is mandatory before account creation.
+
+User Acceptance Testers:
+Internal team members and a few external users who participated in the register feature testing.
