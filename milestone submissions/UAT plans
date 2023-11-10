@@ -47,7 +47,7 @@ Sample user data for registration, including names, email addresses, phone numbe
 Variations of data inputs, including valid and invalid data for each field.
 
 Test Cases:
-Successful Registration: Complete the registration form with all valid data and submit. Verify successful registration with a confirmation message and an email confirmation (if applicable).
+Successful Registration: Complete the registration form with all valid data and submit. Verify successful registration with a confirmation message and an email confirmation.
 Invalid Data Submission: Attempt to register with invalid data (e.g., incorrect email format, weak password). Expect to see relevant error messages and no account creation.
 Incomplete Form Submission: Attempt to register without filling in all required fields. Expect to see error messages indicating mandatory fields.
 Duplicate Account Handling: Attempt to register with an email address or username already in use. Verify the system detects the duplication and alerts the user.
