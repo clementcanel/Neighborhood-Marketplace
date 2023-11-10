@@ -64,6 +64,28 @@ app.get('/welcome', (req, res) => {
     res.json({status: 'success', message: 'Welcome!'});
   });
 
+app.get('/register', (req, res) => {
+  res.render('pages/register')
+});
+
+// Register
+app.post('/register', async (req, res) => {
+  //hash the password using bcrypt library
+  try {
+      const hash = await bcrypt.hash(req.body.password, 10);
+    
+      // To-DO: Insert username and hashed password into the 'users' table
+      await db.any(`INSERT INTO users(username, password) VALUES ($1, $2)`, [req.body.username, hash]);
+      res.redirect('/login');
+      
+  } catch (error) {
+      res.render("pages/register", {
+          error: true,
+          message: error.message,
+      });
+  }
+});
+
 
 app.get('/login', (req, res) => {
     res.render('pages/login')
