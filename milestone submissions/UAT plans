@@ -12,7 +12,6 @@ A set of valid and invalid usernames and passwords.
 User accounts with different roles and permissions.
 
 Test Cases:
-
 Valid Login: Enter valid username and password. Expect successful login and redirection to the dashboard.
 Invalid Login: Enter invalid username or password. Expect an error message indicating incorrect credentials.
 Empty Fields: Try logging in with one or both fields empty. Expect an error message indicating required fields.
