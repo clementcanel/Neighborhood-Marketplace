@@ -1,3 +1,11 @@
+DROP TABLE IF EXISTS users CASCADE;
+CREATE TABLE users(
+    username CHAR,
+    email CHAR PRIMARY KEY,
+    rating DECIMAL,
+    verified BOOL
+);
+
 DROP TABLE IF EXISTS jobs CASCADE;
 CREATE TABLE jobs(
     name CHAR(50) ,
@@ -9,10 +17,3 @@ CREATE TABLE jobs(
     FOREIGN KEY (requester) REFERENCES users(email)
 );
 
-DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users(
-    username CHAR,
-    email CHAR PRIMARY KEY,
-    rating DECIMAL,
-    verified BOOL,
-);
