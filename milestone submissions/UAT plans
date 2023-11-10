@@ -1,1 +1,23 @@
+Features: Login. Logout. 
 
+Login: 
+
+Test Environment:
+
+Testing will be conducted on different browsers to ensure cross-platform compatibility.
+Ensure the testing environment mirrors the production environment with the latest version of the application.
+
+Test Data:
+A set of valid and invalid usernames and passwords.
+User accounts with different roles and permissions.
+
+Test Cases:
+
+Valid Login: Enter valid username and password. Expect successful login and redirection to the dashboard.
+Invalid Login: Enter invalid username or password. Expect an error message indicating incorrect credentials.
+Empty Fields: Try logging in with one or both fields empty. Expect an error message indicating required fields.
+Account Lock: Attempt login with valid credentials after multiple failed attempts. Verify if the account gets locked and displays the appropriate message.
+Session Persistence: Login and close the browser without logging out. Reopen the browser to check if the session persists.
+
+User Acceptance Testers:
+A mix of internal team members and a select group of external users representing different user roles.
