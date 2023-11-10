@@ -32,7 +32,7 @@ it('positive : /login', done => {
     chai
       .request(server)
       .post('/login')
-      .send({username: 'John Doe', email: 'testEmail@gmail.com', rating: 5.0, verified: true})
+      .send({username: 'John Doe', email: 'testEmail@gmail.com', password: 'YourSecurePassword', rating: 5.0, verified: true})
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.equals('Success');
@@ -46,10 +46,10 @@ it('Negative : /login. Checking invalid name', done => {
     chai
       .request(server)
       .post('/login')
-      .send({username: 10, email: 'testEmail2@gmail.com', rating: 6.0, verified: true})
+      .send({username: 10, email: 'testEmail2@gmail.com', password: 'YouSecurePassword', rating: 6.0, verified: true})
       .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.message).to.equals('Invalid input');
+        expect(res).to.have.status(401);
+        expect(res.body.message).to.equals("Incorrect username or password.");
         done();
       });
   });
