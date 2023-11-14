@@ -13,7 +13,7 @@ CREATE TABLE jobs(
     job_id INTEGER PRIMARY KEY,
     description VARCHAR(200),
     requester CHAR,
-    minPrice INTEGER,
-    maxPrice INTEGER,
+    minPrice DECIMAL,
+    maxPrice DECIMAL,
     FOREIGN KEY (requester) REFERENCES users(email)
 );
