@@ -5,6 +5,6 @@ fix endpoints between pages, (page setup is good) - Clement
 Accepted Listing in the cart - Jonah
 Put job postings from database on Jobs page - Miles
 - Justin
-- Jayas
+Work on jobs.ejs and its endpoints- Jayas
 
 
