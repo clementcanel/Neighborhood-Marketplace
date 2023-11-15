@@ -1,4 +1,10 @@
 Meeting 11/14
 
 Next week I plan to work on incorporating the maps API in our home page and adding more test cases for the different endpoints - Mohamed
+fix endpoints between pages, (page setup is good) - Clement
+Accepted Listing in the cart - Jonah
+Put job postings from database on Jobs page - Miles
+- Justin
+- Jayas
+
 
