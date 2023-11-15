@@ -7,5 +7,17 @@ Set up release notes
 
 
 MEETING 2
+Home page working
+Database
+testcases
+starting working on routes
+login stuff
+testing
 
-TODO
+what are the core features? focus on them
+don't do chat just put emails, 
+don't do google maps if it isn't necessary, Maybe same city or zipcode?
+do as little as possible
+
+Demoed the login page
+
