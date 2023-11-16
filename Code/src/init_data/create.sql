@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users(
-    username CHAR,
-    email CHAR PRIMARY KEY,
+    username VARCHAR(50),
+    email VARCHAR(100) PRIMARY KEY,
     password CHAR(60) NOT NULL,
     rating DECIMAL,
     verified BOOL
@@ -12,7 +12,7 @@ CREATE TABLE jobs(
     name CHAR(50) ,
     job_id INTEGER PRIMARY KEY,
     description VARCHAR(200),
-    requester CHAR,
+    requester VARCHAR(100),
     minPrice DECIMAL,
     maxPrice DECIMAL,
     FOREIGN KEY (requester) REFERENCES users(email)
