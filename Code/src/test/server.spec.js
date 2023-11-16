@@ -32,7 +32,7 @@ it('positive : /login', done => {
     chai
       .request(server)
       .post('/login')
-      .send({username: 'Dummy2', password: 'testPass'})
+      .send({username: 'Dummy3', password: 'testPass2'})
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.equals('Success');
@@ -53,6 +53,33 @@ it('Negative : /login. Checking invalid name', done => {
         done();
       });
   });
+
+it('Positive: /register', done => {
+  chai
+    .request(server)
+    .post('/register')
+    .set('Test-Case', 'true')
+    .send({ username: 'NewUser', password: 'NewPass123', email: 'newuser@example.com' })
+    .end((err, res) => {
+      expect(res).to.have.status(200);
+      expect(res.body.message).to.equals('Success');
+      done();
+    });
+});
+
+it('Negative: /register. Missing something', done => {
+  chai
+    .request(server)
+    .post('/register')
+    .send({ username: 'User123' })
+    .end((err, res) => {
+      expect(res).to.have.status(401);
+      expect(res.body.message).to.equals('Missing something');
+      done();
+    });
+});
+
+
 
 
 });

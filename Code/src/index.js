@@ -72,6 +72,12 @@ app.get('/register', (req, res) => {
 app.post('/register', async (req, res) => {
   //hash the password using bcrypt library
   try {
+      if (!req.body.username || !req.body.password || !req.body.email) {
+        return res.render("pages/register", {
+            error: true,
+            message: "Missing required fields",
+        });
+      }
       const hash = await bcrypt.hash(req.body.password, 10);
     
       // To-DO: Insert username and hashed password into the 'users' table
