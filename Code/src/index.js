@@ -134,6 +134,9 @@ app.get('/post', (req, res) => {
 app.get('/profile', (req, res) => {
   res.render('pages/profile')
 });
+app.get('/', (req,res) => {
+  res.redirect('/login');
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
