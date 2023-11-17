@@ -2,6 +2,15 @@
 <%- include('../partials/navbar') %>
 
 <main>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        img {
+            height: 100px;
+        }
+    </style>
+
     <div class="container">
         <!-- Page Heading -->
         <section class="page-heading">
@@ -21,7 +30,29 @@
 
         <!-- Services Listing -->
         <section class="services-listing">
-            <div class="row">
+            <div class="container">
+                <table style="width:100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Requester</th>
+                        <th>Price</th>
+                    </tr>
+
+                    <% jobs.forEach(job => { %>
+                    <tr>
+                        <th> <%= job.name %> </th>
+                        <th>  <%= job.description %> </th>
+                        <th> <%= job.requester %> </th>
+                        <th> <%= job.minPrice %> '-' <%= job.maxPrice %> </th>
+                        <th>
+                            <form action=" ">
+                                <button type="submit">Email</button>
+                            </form>
+                        </th>
+                        </tr>
+                    <% } )%>
+                </table>
             </div>
         </section>
 
