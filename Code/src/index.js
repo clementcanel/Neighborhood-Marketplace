@@ -92,7 +92,9 @@ app.post('/register', async (req, res) => {
   }
 });
 
-
+app.get('/', (req,res) => {
+  res.redirect('/login');
+});
 app.get('/login', (req, res) => {
     res.render('pages/login')
 });
@@ -122,6 +124,7 @@ app.post('/login', async (req, res) => {
         });
     }
 });
+
 app.get('/jobs', (req, res) => {
   res.render('pages/jobs')
 });
@@ -134,9 +137,8 @@ app.get('/post', (req, res) => {
 app.get('/profile', (req, res) => {
   res.render('pages/profile')
 });
-app.get('/', (req,res) => {
-  res.redirect('/login');
-});
+
+
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
