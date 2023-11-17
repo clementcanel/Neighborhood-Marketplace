@@ -125,6 +125,15 @@ app.post('/login', async (req, res) => {
 app.get('/jobs', (req, res) => {
   res.render('pages/jobs')
 });
+app.get('/home', (req, res) => {
+  res.render('pages/home')
+});
+app.get('/post', (req, res) => {
+  res.render('pages/post')
+});
+app.get('/profile', (req, res) => {
+  res.render('pages/profile')
+});
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
