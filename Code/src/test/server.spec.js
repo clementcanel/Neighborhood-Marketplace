@@ -32,7 +32,7 @@ it('positive : /login', done => {
     chai
       .request(server)
       .post('/login')
-      .send({username: 'Dummy3', password: 'testPass2'})
+      .send({username: 'test2', password: 'test2'})
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.message).to.equals('Success');
@@ -58,10 +58,10 @@ it('Positive: /register', done => {
   chai
     .request(server)
     .post('/register')
-    .send({ username: 'NewUser', email: 'newuser@example.com', password: 'NewPass123' })
+    .send({ username: 'testRegister', email: 'testRegister@example.com', password: 'testRegister' })
     .end((err, res) => {
+      expect(res).to.redirect;
       expect(res).to.have.status(200);
-      expect(res.body.message).to.equals('Success');
       done();
     });
 });
@@ -72,8 +72,9 @@ it('Negative: /register. Missing something', done => {
     .post('/register')
     .send({ username: 'User123' })
     .end((err, res) => {
-      expect(res).to.have.status(401);
-      expect(res.body.message).to.equals('Missing something');
+      expect(res).to.be.html;
+      expect(res.text).to.include('<div class="alert alert-danger"');
+      expect(res.text).to.include("Missing required fields");
       done();
     });
 });
