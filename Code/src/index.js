@@ -81,7 +81,7 @@ app.post('/register', async (req, res) => {
       const hash = await bcrypt.hash(req.body.password, 10);
     
       // To-DO: Insert username and hashed password into the 'users' table
-      await db.any(`INSERT INTO users(username, password) VALUES ($1, $2)`, [req.body.username, hash]);
+      await db.any(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`, [req.body.username, req.body.username, hash]);
       res.redirect('/login');
       
   } catch (error) {

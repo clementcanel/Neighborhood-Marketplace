@@ -58,8 +58,7 @@ it('Positive: /register', done => {
   chai
     .request(server)
     .post('/register')
-    .set('Test-Case', 'true')
-    .send({ username: 'NewUser', password: 'NewPass123', email: 'newuser@example.com' })
+    .send({ username: 'NewUser', email: 'newuser@example.com', password: 'NewPass123' })
     .end((err, res) => {
       expect(res).to.have.status(200);
       expect(res.body.message).to.equals('Success');
