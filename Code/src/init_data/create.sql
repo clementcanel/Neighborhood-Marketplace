@@ -4,6 +4,7 @@ CREATE TABLE users(
     email VARCHAR(100),
     password CHAR(60) NOT NULL,
     rating DECIMAL,
+    verified BOOL
 );
 
 DROP TABLE IF EXISTS jobs CASCADE;
