@@ -81,7 +81,7 @@ app.post('/register', async (req, res) => {
       const hash = await bcrypt.hash(req.body.password, 10);
     
       // To-DO: Insert username and hashed password into the 'users' table
-      await db.any(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`, [req.body.username, req.body.username, hash]);
+      await db.any(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`, [req.body.username, req.body.email, hash]);
       res.redirect('/login');
       
   } catch (error) {
@@ -92,7 +92,9 @@ app.post('/register', async (req, res) => {
   }
 });
 
-
+app.get('/', (req,res) => {
+  res.redirect('/login');
+});
 app.get('/login', (req, res) => {
     res.render('pages/login')
 });
@@ -122,6 +124,7 @@ app.post('/login', async (req, res) => {
         });
     }
 });
+
 app.get('/jobs', (req, res) => {
   res.render('pages/jobs')
 });
@@ -134,6 +137,8 @@ app.get('/post', (req, res) => {
 app.get('/profile', (req, res) => {
   res.render('pages/profile')
 });
+
+
 // *****************************************************
 // <!-- Section 5 : Start Server-->
 // *****************************************************
