@@ -117,6 +117,7 @@ app.post('/login', async (req, res) => {
         req.session.user = user;
         req.session.save();
         return res.status(200).json({ message: 'Success' });
+        
     } catch (error) {
         res.render("pages/register", {
             error: true,
@@ -125,9 +126,21 @@ app.post('/login', async (req, res) => {
     }
 });
 
+const all_jobs = `SELECT * FROM jobs`
+
 app.get('/jobs', (req, res) => {
-  res.render('pages/jobs')
+
+  db.any(all_jobs)
+    .then((jobs) =>   {
+    console.log(jobs)
+    res.render("pages/jobs", {jobs});
+  })
+  
+  .catch( (err)=> {
+    return console.log(err);
+  });
 });
+
 app.get('/home', (req, res) => {
   res.render('pages/home')
 });

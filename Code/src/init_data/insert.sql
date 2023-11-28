@@ -3,5 +3,5 @@
 --('Alice', 'alice@gmail.com', 'alicep', 5.0, FALSE);
 
 --INSERT INTO jobs (name, job_id, description, requester, minPrice, maxPrice ) VALUES
---('Paint my house', 1, 'please paint my walls', 'bob@gmail.com', 1.0, 100.0),
+--('Paint my house', 1, 'please paint my walls', 'bobp', 1.0, 100.0),
 --('Mow my lawn', 2, 'please mow my lawn', 'alice@gmail.com', 9.5, 10.0);
