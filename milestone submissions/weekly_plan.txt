@@ -8,3 +8,4 @@ Finish work on database work on endpoints- Justin
 Work on jobs.ejs and its endpoints- Jayas
 
 
+Meeting 11/28
