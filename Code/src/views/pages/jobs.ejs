@@ -69,14 +69,18 @@
             <table>
                 <tr>
                     <th>Job Name</th>
+                    <th>Requester</th>
                     <th>Description</th>
                     <th>Price Range</th>
+                    <th>Email</th>
                 </tr>
                 <% jobs.forEach(job => { %>
                     <tr>
                         <td><%= job.name.trim() %></td>
+                        <td><%= job.requester %></td>
                         <td><%= job.description %></td>
-                        <td>$<%= job.minPrice %> - $<%= job.maxPrice %></td>
+                        <td> $<%= job.minprice %> - $<%= job.maxprice %></td>
+                        <td> <a href="">Email</a></td>
                     </tr>
                 <% }) %>
             </table>
