@@ -4,7 +4,7 @@ Next week I plan to work on incorporating the maps API in our home page and addi
 fix endpoints between pages, (page setup is good) - Clement
 Accepted Listing in the cart - Jonah
 Put job postings from database on Jobs page - Miles
-- Justin
+Finish work on database work on endpoints- Justin
 Work on jobs.ejs and its endpoints- Jayas
 
 
