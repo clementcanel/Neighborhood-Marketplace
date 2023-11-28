@@ -61,73 +61,71 @@ app.use(
 // <!-- Section 4 : API Routes -->
 // *****************************************************
 app.get('/welcome', (req, res) => {
-    res.json({status: 'success', message: 'Welcome!'});
-  });
+  res.json({ status: 'success', message: 'Welcome!' });
+});
+
 
 app.get('/register', (req, res) => {
   res.render('pages/register')
 });
 
+
 // Register
 app.post('/register', async (req, res) => {
   //hash the password using bcrypt library
   try {
-      if (!req.body.username || !req.body.password || !req.body.email) {
-        return res.render("pages/register", {
-            error: true,
-            message: "Missing required fields",
-        });
-      }
-      const hash = await bcrypt.hash(req.body.password, 10);
-    
-      // To-DO: Insert username and hashed password into the 'users' table
-      await db.any(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`, [req.body.username, req.body.email, hash]);
-      res.redirect('/login');
-      
-  } catch (error) {
-      res.render("pages/register", {
-          error: true,
-          message: error.message,
+    if (!req.body.username || !req.body.password || !req.body.email) {
+      return res.render("pages/register", {
+        error: true,
+        message: "Missing required fields",
       });
+    }
+    const hash = await bcrypt.hash(req.body.password, 10);
+
+    // To-DO: Insert username and hashed password into the 'users' table
+    await db.none(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`,
+    [req.body.username, req.body.email, hash]);
+    res.redirect('/login');
+
+  } catch (error) {
+    res.render("pages/register", {
+      error: true,
+      message: error.message,
+    });
   }
 });
 
-app.get('/', (req,res) => {
-  res.redirect('/login');
-});
+
 app.get('/login', (req, res) => {
-    res.render('pages/login')
+  res.render('pages/login')
 });
 
 
 
 app.post('/login', async (req, res) => {
-    //hash the password using bcrypt library
-    try {
-        const query = `select * from users where username = $1`;
-        // To-DO: Insert username and hashed password into the 'users' table
-        const user = await db.oneOrNone(query, req.body.username);
-        if(!user) {
-          return res.status(401).json({ message: "Incorrect username or password." });
-        }
-        const match = await bcrypt.compare(req.body.password, user.password);
-        if (!match) {
-          return res.status(401).json({ message: "Incorrect username or password." });
-        }
-        req.session.user = user;
-        req.session.save();
-        return res.status(200).json({ message: 'Success' });
-    } catch (error) {
-        res.render("pages/register", {
-            error: true,
-            message: error.message,
-        });
+  //hash the password using bcrypt library
+  try {
+    const query = `select * from users where username = $1`;
+    // To-DO: Insert username and hashed password into the 'users' table
+    const user = await db.oneOrNone(query, req.body.username);
+    if (!user) {
+      return res.status(401).json({ message: "Incorrect username or password." });
     }
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
+      return res.status(401).json({ message: "Incorrect username or password." });
+    }
+    req.session.user = user;
+    req.session.save();
+    return res.status(200).json({ message: 'Success' });
+  } catch (error) {
+    res.render("pages/register", {
+      error: true,
+      message: error.message,
+    });
+  }
 });
 
-app.get('/jobs', (req, res) => {
-  res.render('pages/jobs')
-});
 app.get('/home', (req, res) => {
   res.render('pages/home')
 });
@@ -136,6 +134,33 @@ app.get('/post', (req, res) => {
 });
 app.get('/profile', (req, res) => {
   res.render('pages/profile')
+});
+
+app.get('/jobs', async (req, res) => {
+  try {
+    // Fetch job listings from the 'jobs' table
+    const jobs = await db.any('SELECT * FROM jobs');
+    // Render the 'jobs.ejs' page with the job listings
+    res.render('pages/jobs', { jobs: jobs });
+  } catch (error) {
+    console.error('ERROR:', error.message || error);
+    // Render the 'jobs.ejs' page with an empty jobs array if there is an error
+    res.render('pages/jobs', { jobs: [] });
+  }
+});
+
+
+
+// API route for Logout
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.redirect('/');
+    }
+
+    res.render('pages/login', { message: 'Logged out Successfully' });
+  });
 });
 
 

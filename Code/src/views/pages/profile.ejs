@@ -1,10 +1,94 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/navbar') %>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Profile - Neighborhood Service Exchange</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            overflow: hidden;
+            background-color: #555;
+        }
+        nav li {
+            float: left;
+        }
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav li a:hover {
+            background-color: #777;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h2 {
+            color: #555;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            color: #666;
+        }
+        input[type=text],
+        input[type=email] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-
 <body>
     <header>
         <h1>Your Profile</h1>
@@ -20,33 +104,26 @@
     <div class="content">
         <section id="completed_jobs">
             <h2>Your Completed Jobs</h2>
-            <!-- List of completed jobs -->
             <ul>
                 <li>Completed Job 1: Task Description</li>
                 <li>Completed Job 2: Task Description</li>
-                <!-- Additional completed jobs -->
             </ul>
         </section>
         <section id="bought_jobs">
             <h2>Your Bought Jobs</h2>
-            <!-- List of bought jobs -->
             <ul>
                 <li>Bought Job 1: Task Description</li>
                 <li>Bought Job 2: Task Description</li>
-                <!-- Additional bought jobs -->
             </ul>
         </section>
         <section id="user_information">
             <h2>Your User Information</h2>
-            <!-- Display user information -->
             <p>Name: John Doe</p>
             <p>Email: example@example.com</p>
             <p>Address: 123 Main Street</p>
-            <!-- Additional user information -->
         </section>
         <section id="edit_profile">
             <h2>Edit Your Profile</h2>
-            <!-- Form for editing profile -->
             <form>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name"><br><br>
@@ -59,5 +136,5 @@
         </section>
     </div>
 </body>
-
 </html>
+<%- include ('../partials/footer') %>
