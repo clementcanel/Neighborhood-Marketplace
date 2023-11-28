@@ -103,27 +103,43 @@ app.get('/login', (req, res) => {
 
 
 app.post('/login', async (req, res) => {
-  //hash the password using bcrypt library
-  try {
-    const query = `select * from users where username = $1`;
-    // To-DO: Insert username and hashed password into the 'users' table
-    const user = await db.oneOrNone(query, req.body.username);
-    if (!user) {
-      return res.status(401).json({ message: "Incorrect username or password." });
+    //hash the password using bcrypt library
+    try {
+        const query = `select * from users where username = $1`;
+        // To-DO: Insert username and hashed password into the 'users' table
+        const user = await db.oneOrNone(query, req.body.username);
+        if(!user) {
+          return res.status(401).json({ message: "Incorrect username or password." });
+        }
+        const match = await bcrypt.compare(req.body.password, user.password);
+        if (!match) {
+          return res.status(401).json({ message: "Incorrect username or password." });
+        }
+        req.session.user = user;
+        req.session.save();
+        return res.status(200).json({ message: 'Success' });
+        
+    } catch (error) {
+        res.render("pages/register", {
+            error: true,
+            message: error.message,
+        });
     }
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) {
-      return res.status(401).json({ message: "Incorrect username or password." });
-    }
-    req.session.user = user;
-    req.session.save();
-    return res.status(200).json({ message: 'Success' });
-  } catch (error) {
-    res.render("pages/register", {
-      error: true,
-      message: error.message,
-    });
-  }
+});
+
+const all_jobs = `SELECT * FROM jobs`
+
+app.get('/jobs', (req, res) => {
+
+  db.any(all_jobs)
+    .then((jobs) =>   {
+    console.log(jobs)
+    res.render("pages/jobs", {jobs});
+  })
+  
+  .catch( (err)=> {
+    return console.log(err);
+  });
 });
 
 app.get('/home', (req, res) => {

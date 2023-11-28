@@ -4,6 +4,12 @@
 <main>
     <div class="container">
       <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= message %>
+        </div>
+      <% } %>
+    
       <h1>REGISTER</h1>
       <form action="/register" method="POST">
           <label for="username">Username:</label>
