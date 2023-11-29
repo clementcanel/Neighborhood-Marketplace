@@ -165,6 +165,20 @@ app.get('/jobs', async (req, res) => {
   }
 });
 
+app.post('/jobs', async (req, res) => {
+  try {
+  
+    const { title, description, location, salary } = req.body;
+
+    await db.none('INSERT INTO jobs(title, description, location, salary) VALUES($1, $2, $3, $4)', [title, description, location, salary]);
+
+    res.redirect('/jobs');
+  } catch (error) {
+    console.error('ERROR:', error.message || error);
+    res.status(500).send('error inputing job');
+  }
+});
+
 
 
 // API route for Logout
