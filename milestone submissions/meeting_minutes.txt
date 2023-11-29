@@ -21,3 +21,10 @@ do as little as possible
 
 Demoed the login page
 
+MEETING 3
+jobs page working
+endpoints will be worked on
+login page, jobs page, register page all fixed and working now
+Demoed the jobs page
+talked about getting the post jobs part working,
+close issues that are done
