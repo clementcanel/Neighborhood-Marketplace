@@ -10,8 +10,8 @@ Work on jobs.ejs and its endpoints- Jayas
 
 Meeting 11/28
  - Mohamed
- - Clement
- - Jonah
+Post jobs page - Clement
+about page - Jonah
 add email button to job listings, and also an option for pictures - Miles
-- Justin
-- Jayas
+Post jobs page - Justin
+Endpoints - Jayas
