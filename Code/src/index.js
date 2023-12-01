@@ -168,9 +168,9 @@ app.get('/jobs', async (req, res) => {
 app.post('/jobs', async (req, res) => {
   try {
   
-    const { title, description, location, salary } = req.body;
+    const { name, job_id, description, requester, minPrice, maxPrice } = req.body;
 
-    await db.none('INSERT INTO jobs(title, description, location, salary) VALUES($1, $2, $3, $4)', [title, description, location, salary]);
+    await db.none('INSERT INTO jobs(name, job_id, description, requester, minPrice, maxPrice) VALUES($1, $2, $3, $4, $5, $6)', [name, job_id, description, requester, minPrice, maxPrice]);
 
     res.redirect('/jobs');
   } catch (error) {
