@@ -152,6 +152,10 @@ app.get('/profile', (req, res) => {
   res.render('pages/profile')
 });
 
+app.get('/about', (req, res) => {
+  res.render('pages/about')
+});
+
 app.get('/jobs', async (req, res) => {
   try {
     // Fetch job listings from the 'jobs' table
