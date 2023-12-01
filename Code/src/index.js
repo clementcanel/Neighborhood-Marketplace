@@ -137,18 +137,7 @@ app.post('/login', async (req, res) => {
 
 const all_jobs = `SELECT * FROM jobs`
 
-app.get('/jobs', (req, res) => {
 
-  db.any(all_jobs)
-    .then((jobs) =>   {
-    console.log(jobs)
-    res.render("pages/jobs", {jobs});
-  })
-  
-  .catch( (err)=> {
-    return console.log(err);
-  });
-});
 
 app.get('/home', (req, res) => {
   res.render('pages/home')
@@ -164,18 +153,6 @@ app.get('/about', (req, res) => {
   res.render('pages/about')
 });
 
-app.get('/jobs', async (req, res) => {
-  try {
-    // Fetch job listings from the 'jobs' table
-    const jobs = await db.any('SELECT * FROM jobs');
-    // Render the 'jobs.ejs' page with the job listings
-    res.render('pages/jobs', { jobs: jobs });
-  } catch (error) {
-    console.error('ERROR:', error.message || error);
-    // Render the 'jobs.ejs' page with an empty jobs array if there is an error
-    res.render('pages/jobs', { jobs: [] });
-  }
-});
 
 
 app.post('/jobs', async (req, res) => {
