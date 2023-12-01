@@ -110,16 +110,21 @@ app.post('/login', async (req, res) => {
         const user = await db.oneOrNone(query, req.body.username);
         if(!user) {
           res.render('pages/register');
+        
           return res.status(401).json({ message: "Incorrect username or password." });
         }
         const match = await bcrypt.compare(req.body.password, user.password);
         if (!match) {
-          res.render('pages/register');
+
+          res.redirect("pages/register")
+
           return res.status(401).json({ message: "Incorrect username or password." });
         }
         req.session.user = user;
         req.session.save();
+
         res.render('pages/home');
+
         return res.status(200).json({ message: 'Success' });
         
     } catch (error) {
@@ -171,6 +176,7 @@ app.get('/jobs', async (req, res) => {
     res.render('pages/jobs', { jobs: [] });
   }
 });
+
 
 app.post('/jobs', async (req, res) => {
   try {
