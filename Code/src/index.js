@@ -109,24 +109,21 @@ app.post('/login', async (req, res) => {
         // To-DO: Insert username and hashed password into the 'users' table
         const user = await db.oneOrNone(query, req.body.username);
         if(!user) {
-          res.render('pages/register');
-        
-          return res.status(401).json({ message: "Incorrect username or password." });
+          return res.status(401).render('pages/register', {
+            error: true,
+            message: "Incorrect username or password."
+        });
         }
         const match = await bcrypt.compare(req.body.password, user.password);
         if (!match) {
-
-          res.redirect("pages/register")
-
-          return res.status(401).json({ message: "Incorrect username or password." });
+          return res.status(401).render('pages/register', {
+            error: true,
+            message: "Incorrect username or password."
+        });
         }
         req.session.user = user;
         req.session.save();
-
-        res.render('pages/home');
-
-        return res.status(200).json({ message: 'Success' });
-        
+        res.redirect('/home');
     } catch (error) {
         res.render("pages/register", {
             error: true,
