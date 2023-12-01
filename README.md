@@ -49,3 +49,4 @@ https://lucid.app/lucidchart/ebeee19a-02fe-4976-85cf-55efdafe2bb4/edit?viewport_
 Link to Google Doc 
 https://docs.google.com/document/d/1U7eGfses0jIhPSrv3PT-4bGBbwqAmpRltvlwO6isLZc/edit?usp=sharing
 
+Website Link: http://recitation-14-team-04.eastus.cloudapp.azure.com:3000/home
