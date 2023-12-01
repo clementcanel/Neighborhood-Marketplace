@@ -57,6 +57,8 @@ app.use(
   })
 );
 
+
+
 // *****************************************************
 // <!-- Section 4 : API Routes -->
 // *****************************************************
@@ -131,6 +133,14 @@ app.post('/login', async (req, res) => {
         });
     }
 });
+const auth = (req, res, next) => {
+  if (!req.session.user) {
+    return res.redirect('/login');
+  }
+  next();
+};
+app.use(auth);
+
 
 const all_jobs = `SELECT * FROM jobs`
 
