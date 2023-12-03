@@ -96,29 +96,31 @@
 
 <body>
     <%- include ('../partials/header') %>
-    <%- include ('../partials/navbar') %>
+        <%- include ('../partials/navbar') %>
 
-    <main>
-        <div class="login-container">
-            <h1>LOGIN</h1>
-            <form action="/login" method="POST">
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required />
+            <main>
+                <div class="login-container">
+                    <h1>Login</h1>
+                    <form action="/login" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required
+                                style="width: calc(100% - 22px); padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required
+                                style="width: calc(100% - 22px); padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        </div>
+
+
+                        <input type="submit" value="Submit" />
+                    </form>
+                    <p>Don't have an account?<a href="/register">Register</a></p>
                 </div>
+            </main>
 
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required />
-                </div>
-
-                <input type="submit" value="Submit" />
-            </form>
-            <p>Don't have an account?<a href="/register">Register</a></p>
-        </div>
-    </main>
-
-    <%- include ('../partials/footer') %>
+            <%- include ('../partials/footer') %>
 </body>
 
 </html>

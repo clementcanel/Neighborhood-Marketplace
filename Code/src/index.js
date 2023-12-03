@@ -197,6 +197,29 @@ app.post('/submit-job', async (req, res) => {
   }
 });
 
+// DELETE route for deleting a job
+app.get('/delete-job/:jobId', async (req, res) => {
+  try {
+    const jobId = req.params.jobId;
+    
+    const job = await db.oneOrNone('SELECT * FROM jobs WHERE job_id = $1', jobId);
+
+    if (!job) {
+      return res.status(404).send('Job not found');
+    }
+
+    if (req.session.user && req.session.user.username === job.requester) {
+      await db.none('DELETE FROM jobs WHERE job_id = $1', jobId);
+      res.redirect('/jobs');
+    } else {
+      res.status(403).send('Unauthorized to delete this job');
+    }
+  } catch (error) {
+    console.error('Error deleting job:', error.message || error);
+    res.status(500).send('Error deleting job: ' + error.message);
+  }
+});
+
 
 
 

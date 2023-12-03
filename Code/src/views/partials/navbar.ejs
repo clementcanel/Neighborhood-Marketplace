@@ -2,36 +2,35 @@
   <nav class="navbar navbar-expand-sm bg-light border-bottom">
     <div class="container-fluid" style="width: 1000px; margin: auto;">
       <!-- Brand/logo -->
-      <a class="navbar-brand" href="/home">
-        <img src="/Code/ExchangeLogo.PNG.png" alt="Logo" style="width:40px;"> Neighborhood Exchange
-      </a>      
+      <a class="navbar-brand" href="/home" style="display: flex; align-items: center;">
+        <img src="/Code/img/ExchangeLogo.png" alt="Logo" style="width:50px; margin-right: 10px;">
+        Neighborhood Exchange
+      </a>
       <!-- Toggler/collapsible Button -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Navbar links -->
-      <div class="nav justify-content-center" id="navbar-collapse">
-        <ul class="navbar-nav me-auto">
+      <div class="collapse navbar-collapse justify-content-center" id="navbar-collapse">
+        <ul class="navbar-nav me-auto" style="font-size: 16px;">
           <li class="nav-item">
-            <a class="nav-link" href="/home">Home</a>
+            <a class="nav-link" href="/home" style="color: #333;">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/jobs">Jobs</a>
+            <a class="nav-link" href="/jobs" style="color: #333;">Jobs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/post">Post</a>
+            <a class="nav-link" href="/post" style="color: #333;">Post</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/about" style="color: #333;">About</a>
           </li>
         </ul>
         <!-- User Account and Logout -->
         <div class="d-flex">
-          <a href="/profile" class="nav-link me-2">My Profile</a>
-          <a href="/logout" class="nav-link">Logout</a>
+          <a href="/profile" class="nav-link" style="color: #333; margin-right: 10px;">My Profile</a>
+          <a href="/logout" class="nav-link" style="color: #333;">Logout</a>
         </div>
-
-
       </div>
     </div>
   </nav>

@@ -11,29 +11,34 @@
             background: #f4f4f4;
             color: #333;
         }
+
         header {
             background: #333;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
         }
+
         nav {
             background: #555;
             padding: 10px 20px;
         }
+
         nav a {
             color: #fff;
             text-decoration: none;
             margin: 0 10px;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
+
         main {
             padding: 20px;
-            text-align: center;
         }
-        .container {
+
+        .login-container {
             max-width: 600px;
             margin: auto;
             padding: 20px;
@@ -42,71 +47,99 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background: #fff;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+
+        .form-group {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
         }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #444;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background: #555;
+            border-color: #666;
+        }
+
         label {
             display: block;
             margin-bottom: 5px;
         }
-        input[type="username"],
-        input[type="email"],
-        input[type="password"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+
+        p {
+            margin-top: 20px;
         }
-        input[type="submit"] {
-            padding: 10px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 5px;
         }
-        .alert {
-            color: #721c24;
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            text-align: left;
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
         }
     </style>
 </head>
 
 <body>
     <%- include ('../partials/header') %>
-    <%- include ('../partials/navbar') %>
+        <%- include ('../partials/navbar') %>
 
-    <main>
-        <div class="container">
-            <% if (typeof error !== 'undefined' && error) { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= message %>
+            <main>
+                <div class="login-container">
+                    <% if (typeof error !=='undefined' && error) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= message %>
+                        </div>
+                        <% } %>
+
+                            <h1>Register</h1>
+                            <form action="/register" method="POST">
+                                <div class="form-group">
+                                    <label for="username">Username:</label>
+                                    <input type="text" id="username" name="username" required
+                                        style="width: calc(100% - 22px); padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" name="email" required
+                                        style="width: calc(100% - 22px); padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" id="password" name="password" required
+                                        style="width: calc(100% - 22px); padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                                </div>
+
+
+                                <input type="submit" value="Submit" />
+                            </form>
+                            <p>Already have an account?<a href="/login">Login</a></p>
                 </div>
-            <% } %>
+            </main>
 
-            <h1>REGISTER</h1>
-            <form action="/register" method="POST">
-                <label for="username">Username:</label>
-                <input type="username" id="username" name="username" required/>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required/>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required/>
-                
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
-    </main>
-
-    <%- include ('../partials/footer') %>
+            <%- include ('../partials/footer') %>
 </body>
 
 </html>
