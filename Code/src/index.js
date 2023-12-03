@@ -162,17 +162,38 @@ app.get('/about', (req, res) => {
 
 
 
-app.post('/jobs', async (req, res) => {
+app.get('/jobs', async (req, res) => {
   try {
-  
-    const { name, job_id, description, requester, minPrice, maxPrice } = req.body;
+    const jobs = await db.any('SELECT * FROM jobs');
+    res.render('pages/jobs', { jobs: jobs });
+  } catch (error) {
+    console.error('ERROR:', error.message || error);
+    res.status(500).send('Error retrieving jobs');
+  }
+});
 
-    await db.none('INSERT INTO jobs(name, job_id, description, requester, minPrice, maxPrice) VALUES($1, $2, $3, $4, $5, $6)', [name, job_id, description, requester, minPrice, maxPrice]);
+// POST route for submitting a job
+app.post('/submit-job', async (req, res) => {
+  try {
+    const { jobTitle, jobDescription, jobLocation, jobSalary } = req.body;
+
+    const insertJobQuery = `
+      INSERT INTO jobs (name, description, requester, minPrice, maxPrice)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING job_id;`;
+
+    const result = await db.one(insertJobQuery, [
+      jobTitle, 
+      jobDescription, 
+      req.session.user.username, 
+      null, 
+      jobSalary 
+    ]);
 
     res.redirect('/jobs');
   } catch (error) {
-    console.error('ERROR:', error.message || error);
-    res.status(500).send('error inputing job');
+    console.error('Error posting job:', error.message || error);
+    res.status(500).send('Error posting job: ' + error.message);
   }
 });
 

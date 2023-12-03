@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Neighborhood Service Exchange - Jobs</title>
+    <title>Neighborhood Service Exchange - Welcome</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -31,27 +31,17 @@
         nav a:hover {
             text-decoration: underline;
         }
-        .content {
+        .container {
             padding: 20px;
         }
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
+        hr {
+            border-top: 1px solid #ddd;
         }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background: #333;
-            color: #fff;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .footer-text {
+            text-align: center;
+            opacity: 0.5;
+            font-size: 0.9em;
+            padding: 10px 0;
         }
     </style>
 </head>
@@ -66,9 +56,10 @@
     </div>
 
     <hr>
-    <p style="opacity: 0.5;">Group project by Group 4(Jayas Basnet, Clement Canel, Justin Lynn, Miles Zheng, Jonah Tatterson, Mohamed Mohamedali</p>
-    
+    <div class="footer-text">
+        Group project by Group 4 (Jayas Basnet, Clement Canel, Justin Lynn, Miles Zheng, Jonah Tatterson, Mohamed Mohamedali)
+    </div>
+
+    <%- include ('../partials/footer') %>
 </body>
 </html>
-
-<%- include ('../partials/footer') %>
