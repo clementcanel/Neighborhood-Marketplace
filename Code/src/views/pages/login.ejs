@@ -11,28 +11,33 @@
             background: #f4f4f4;
             color: #333;
         }
+
         header {
             background: #333;
             color: #fff;
             padding: 10px 20px;
             text-align: center;
         }
+
         nav {
             background: #555;
             padding: 10px 20px;
         }
+
         nav a {
             color: #fff;
             text-decoration: none;
             margin: 0 10px;
         }
+
         nav a:hover {
             text-decoration: underline;
         }
+
         main {
-            text-align: center;
             padding: 20px;
         }
+
         .login-container {
             max-width: 600px;
             margin: auto;
@@ -42,37 +47,45 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background: #fff;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-        .form-group {
+
+        .form-group,
+        input[type="submit"] {
+            display: block;
             width: 100%;
+            margin-top: 10px;
         }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #444;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background: #555;
+            border-color: #666;
+        }
+
         label {
             display: block;
             margin-bottom: 5px;
         }
-        input[type="text"],
-        input[type="password"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            padding: 10px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
+
         p {
             margin-top: 20px;
         }
+
         a {
             color: #007bff;
             text-decoration: none;
@@ -98,7 +111,7 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required />
                 </div>
-                
+
                 <input type="submit" value="Submit" />
             </form>
             <p>Don't have an account?<a href="/register">Register</a></p>

@@ -14,29 +14,22 @@
             color: #333;
         }
         header {
-            background-color: #333;
+            background: #333;
             color: #fff;
-            padding: 20px;
+            padding: 10px 20px;
             text-align: center;
         }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            overflow: hidden;
-            background-color: #555;
+        nav {
+            background: #555;
+            padding: 10px 20px;
         }
-        nav li {
-            float: left;
-        }
-        nav li a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
+        nav a {
+            color: #fff;
             text-decoration: none;
+            margin: 0 10px;
         }
-        nav li a:hover {
-            background-color: #777;
+        nav a:hover {
+            text-decoration: underline;
         }
         .content {
             padding: 20px;
@@ -68,17 +61,16 @@
             box-sizing: border-box;
         }
         input[type=submit] {
-            width: 100%;
-            background-color: #4CAF50;
+            background: #333;
             color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
+            padding: 10px 20px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            margin-top: 10px;
         }
         input[type=submit]:hover {
-            background-color: #45a049;
+            background: #555;
         }
         section {
             background-color: #fff;
@@ -94,12 +86,10 @@
         <h1>Your Profile</h1>
     </header>
     <nav>
-        <ul>
-            <li><a href="#completed_jobs">View Completed Jobs</a></li>
-            <li><a href="#bought_jobs">View Bought Jobs</a></li>
-            <li><a href="#user_information">User Information</a></li>
-            <li><a href="#edit_profile">Edit Profile</a></li>
-        </ul>
+        <a href="#completed_jobs">View Completed Jobs</a>
+        <a href="#bought_jobs">View Bought Jobs</a>
+        <a href="#user_information">User Information</a>
+        <a href="#edit_profile">Edit Profile</a>
     </nav>
     <div class="content">
         <section id="completed_jobs">

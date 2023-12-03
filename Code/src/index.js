@@ -179,13 +179,13 @@ app.post('/submit-job', async (req, res) => {
 
     const insertJobQuery = `
       INSERT INTO jobs (name, description, requester, minPrice, maxPrice)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING job_id;`;
+      VALUES ($1, $2, $3, $4, $5);`;
 
-    const result = await db.one(insertJobQuery, [
+    await db.none(insertJobQuery, [
       jobTitle, 
       jobDescription, 
       req.session.user.username, 
+     
       null, 
       jobSalary 
     ]);
@@ -196,6 +196,7 @@ app.post('/submit-job', async (req, res) => {
     res.status(500).send('Error posting job: ' + error.message);
   }
 });
+
 
 
 
