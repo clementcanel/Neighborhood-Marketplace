@@ -1,93 +1,125 @@
 <%- include('../partials/header') %>
-<%- include('../partials/navbar') %>
+    <%- include('../partials/navbar') %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Post a Job</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        nav {
-            background: #555;
-            padding: 10px 20px;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            padding: 20px;
-        }
-        .form-label, .form-control, button {
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .form-control {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        button {
-            background: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background: #555;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Neighborhood Service Exchange</h1>
-    </header>
-    <nav>
-        <a href="/jobs">Find a Job</a>
-        <a href="/post">Post a Job</a>
-    </nav>
+        <!DOCTYPE html>
+        <html>
 
-    <main class="container">
-        <h1>Post a Job</h1>
-        <form action="/submit-job" method="POST">
-            <div class="mb-3">
-                <label for="jobTitle" class="form-label">Job Title</label>
-                <input type="text" class="form-control" id="jobTitle" name="jobTitle" required>
-            </div>
-            <div class="mb-3">
-                <label for="jobDescription" class="form-label">Description</label>
-                <textarea class="form-control" id="jobDescription" name="jobDescription" rows="4" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="jobLocation" class="form-label">Location</label>
-                <input type="text" class="form-control" id="jobLocation" name="jobLocation" required>
-            </div>
-            <div class="mb-3">
-                <label for="jobSalary" class="form-label">Salary (Optional)</label>
-                <input type="text" class="form-control" id="jobSalary" name="jobSalary">
-            </div>
-            <button type="submit" class="btn">Post Job</button>
-        </form>
-    </main>
+        <head>
+            <title>Post a Job</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background: #f4f4f4;
+                    color: #333;
+                }
 
-    <%- include('../partials/footer') %>
-</body>
-</html>
+                header {
+                    background: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    text-align: center;
+                }
+
+                nav {
+                    background: #555;
+                    padding: 10px 20px;
+                }
+
+                nav a {
+                    color: #fff;
+                    text-decoration: none;
+                    margin: 0 10px;
+                }
+
+                nav a:hover {
+                    text-decoration: underline;
+                }
+
+                .container {
+                    padding: 20px;
+                }
+
+                .form-label,
+                .form-control,
+                button {
+                    display: block;
+                    width: 100%;
+                    margin-top: 10px;
+                }
+
+                .form-control {
+                    padding: 10px;
+                    border: 1px solid #ddd;
+                }
+
+                button {
+                    background: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    margin-top: 20px;
+                }
+
+                button:hover {
+                    background: #555;
+                }
+
+                button {
+                    background: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: 2px solid #444;
+                    cursor: pointer;
+                    margin-top: 20px;
+                    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+                    border-radius: 5px;
+
+                }
+                button:hover {
+                    background: #555;
+                    border-color: #666;
+
+                }
+            </style>
+        </head>
+
+        <body>
+            <header>
+                <h1>Neighborhood Service Exchange</h1>
+            </header>
+            <nav>
+                <a href="/jobs">Find a Job</a>
+                <a href="/post">Post a Job</a>
+            </nav>
+
+            <main class="container">
+                <h1>Post a Job</h1>
+                <form action="/submit-job" method="POST">
+                    <div class="mb-3">
+                        <label for="jobTitle" class="form-label">Job Title</label>
+                        <input type="text" class="form-control" id="jobTitle" name="jobTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jobDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="jobDescription" name="jobDescription" rows="4"
+                            required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jobLocation" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="jobLocation" name="jobLocation" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jobSalary" class="form-label">Salary (Optional)</label>
+                        <input type="text" class="form-control" id="jobSalary" name="jobSalary">
+                    </div>
+                    <button type="submit" class="btn">Post Job</button>
+                </form>
+            </main>
+
+            <%- include('../partials/footer') %>
+        </body>
+
+        </html>

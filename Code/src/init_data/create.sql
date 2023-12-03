@@ -9,10 +9,10 @@ CREATE TABLE users(
 
 DROP TABLE IF EXISTS jobs CASCADE;
 CREATE TABLE jobs(
-    name CHAR(50) ,
-    job_id INTEGER PRIMARY KEY,
-    description VARCHAR(200),
-    requester VARCHAR(100) NOT NULL REFERENCES users (username) ON DELETE CASCADE,
+    job_id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(200) NOT NULL,
+    requester VARCHAR(50) NOT NULL REFERENCES users (username) ON DELETE CASCADE,
     minPrice DECIMAL,
     maxPrice DECIMAL
 );
