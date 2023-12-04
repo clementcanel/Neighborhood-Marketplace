@@ -160,17 +160,22 @@ app.get('/about', (req, res) => {
   res.render('pages/about')
 });
 
-
-
 app.get('/jobs', async (req, res) => {
   try {
-    const jobs = await db.any('SELECT * FROM jobs');
+    const searchQuery = req.query.search;
+    let jobs;
+    if (searchQuery) {
+      jobs = await db.any('SELECT * FROM jobs WHERE name ILIKE $1 OR description ILIKE $1', [`%${searchQuery}%`]);
+    } else {
+      jobs = await db.any('SELECT * FROM jobs');
+    }
     res.render('pages/jobs', { jobs: jobs });
   } catch (error) {
     console.error('ERROR:', error.message || error);
     res.status(500).send('Error retrieving jobs');
   }
 });
+
 
 // POST route for submitting a job
 app.post('/submit-job', async (req, res) => {
@@ -219,8 +224,6 @@ app.get('/delete-job/:jobId', async (req, res) => {
     res.status(500).send('Error deleting job: ' + error.message);
   }
 });
-
-
 
 
 // API route for Logout

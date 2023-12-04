@@ -1,136 +1,154 @@
 <%- include ('../partials/header') %>
-    <%- include ('../partials/navbar') %>
+<%- include ('../partials/navbar') %>
 
-        <!DOCTYPE html>
-        <html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighborhood Service Exchange - Jobs</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
 
-        <head>
-            <title>Neighborhood Service Exchange - Jobs</title>
-            <style>
-                body {
-                    font-family: 'Arial', sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    background: #f4f4f4;
-                    color: #333;
-                }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
 
-                header {
-                    background: #333;
-                    color: #fff;
-                    padding: 10px 20px;
-                    text-align: center;
-                }
+        nav {
+            background: #555;
+            padding: 10px 20px;
+        }
 
-                nav {
-                    background: #555;
-                    padding: 10px 20px;
-                }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-                nav a {
-                    color: #fff;
-                    text-decoration: none;
-                    margin: 0 10px;
-                }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-                nav a:hover {
-                    text-decoration: underline;
-                }
+        .content {
+            padding: 20px;
+        }
 
-                .content {
-                    padding: 20px;
-                }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
 
-                table {
-                    width: 100%;
-                    margin-top: 20px;
-                    border-collapse: collapse;
-                }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
 
-                table,
-                th,
-                td {
-                    border: 1px solid #ddd;
-                }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
 
-                th,
-                td {
-                    padding: 10px;
-                    text-align: left;
-                }
+        th {
+            background: #333;
+            color: #fff;
+        }
 
-                th {
-                    background: #333;
-                    color: #fff;
-                }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-                tr:nth-child(even) {
-                    background-color: #f2f2f2;
-                }
+        .delete-button {
+            color: white;
+            background-color: #ff4d4d;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-                .delete-button {
-                    color: white;
-                    background-color: #ff4d4d;
-                    border: none;
-                    padding: 5px 10px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 14px;
-                    margin: 4px 2px;
-                    cursor: pointer;
-                    border-radius: 4px;
-                }
+        .delete-button:hover {
+            background-color: #ff3333;
+        }
 
-                .delete-button:hover {
-                    background-color: #ff3333;
-                }
-            </style>
-        </head>
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        <body>
-            <header>
-                <h1>Neighborhood Service Exchange</h1>
-            </header>
-            <nav>
-                <a href="/jobs">Find a Job</a>
-                <a href="/post">Post a Job</a>
-            </nav>
-            <div class="content">
-                <h2>Job Listings</h2>
-                <% if (jobs && jobs.length> 0) { %>
-                    <table>
-                        <tr>
-                            <th>Job Name</th>
-                            <th>Requester</th>
-                            <th>Description</th>
-                            <th>Price Range</th>
-                            <th>Delete</th>
-                        </tr>
-                        <% jobs.forEach(job=> { %>
-                            <tr>
-                                <td>
-                                    <%= job.name %>
-                                </td>
-                                <td>
-                                    <%= job.requester %>
-                                </td>
-                                <td>
-                                    <%= job.description %>
-                                </td>
-                                <td>$<%= job.minprice %> - $<%= job.maxprice %>
-                                </td>
-                                <td><a href="/delete-job/<%= job.job_id %>" class="delete-button">Delete</a></td>
-                            </tr>
-                            <% }) %>
-                    </table>
-                    <% } else { %>
-                        <p>No job listings available.</p>
-                        <% } %>
-            </div>
-            <%- include ('../partials/footer') %>
-        </body>
+        .search-container input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            width: 300px;
+        }
 
-        </html>
+        .search-container button {
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
 
-        <%- include ('../partials/footer') %>
+        .search-container button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Neighborhood Service Exchange</h1>
+    </header>
+    <nav>
+        <a href="/jobs">Find a Job</a>
+        <a href="/post">Post a Job</a>
+    </nav>
+    <div class="content">
+        <h2>Job Listings</h2>
+
+        <!-- Search Form -->
+        <div class="search-container">
+            <form action="/jobs" method="GET">
+                <input type="text" placeholder="Search jobs..." name="search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <% if (jobs && jobs.length > 0) { %>
+            <table>
+                <tr>
+                    <th>Job Name</th>
+                    <th>Requester</th>
+                    <th>Description</th>
+                    <th>Price Range</th>
+                    <th>Delete</th>
+                </tr>
+                <% jobs.forEach(job => { %>
+                    <tr>
+                        <td><%= job.name %></td>
+                        <td><%= job.requester %></td>
+                        <td><%= job.description %></td>
+                        <td>$<%= job.minprice %> - $<%= job.maxprice %></td>
+                        <td><a href="/delete-job/<%= job.job_id %>" class="delete-button">Delete</a></td>
+                    </tr>
+                <% }) %>
+            </table>
+        <% } else { %>
+            <p>No job listings available.</p>
+        <% } %>
+    </div>
+    <%- include ('../partials/footer') %>
+</body>
+</html>
