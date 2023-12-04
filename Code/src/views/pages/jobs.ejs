@@ -1,5 +1,5 @@
-<%- include ('../partials/header') %>
-<%- include ('../partials/navbar') %>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@
             background-color: #f2f2f2;
         }
 
-        .delete-button, .favorite-button, .unfavorite-button {
+        .action-button {
             color: white;
             background-color: #007bff;
             border: none;
@@ -78,12 +78,12 @@
             border-radius: 4px;
         }
 
-        .delete-button:hover {
-            background-color: #ff3333;
+        .action-button:hover {
+            background-color: #0056b3;
         }
 
-        .favorite-button:hover, .unfavorite-button:hover {
-            background-color: #0056b3;
+        .delete-button:hover {
+            background-color: #ff3333;
         }
 
         .search-container {
@@ -108,6 +108,10 @@
         .search-container button:hover {
             background: #555;
         }
+
+        .favorite-indicator {
+            color: gold; 
+        }
     </style>
 </head>
 
@@ -122,10 +126,17 @@
     <div class="content">
         <h2>Job Listings</h2>
 
-        <!-- Search Form -->
         <div class="search-container">
             <form action="/jobs" method="GET">
                 <input type="text" placeholder="Search jobs..." name="search">
+                <select name="sort">
+                    <option value="default">Default Sort</option>
+                    <option value="favorites">Sort by Favorites</option>
+                    <option value="price_high">Price High to Low</option>
+                    <option value="price_low">Price Low to High</option>
+                    <option value="newest">Newest Jobs</option>
+                    <option value="oldest">Oldest Jobs</option>
+                </select>
                 <button type="submit">Search</button>
             </form>
         </div>
@@ -135,7 +146,7 @@
                 <tr>
                     <th>Job Name</th>
                     <th>Requester</th>
-                    <th>Description</th>
+                    <th>Description/Email</th>
                     <th>Price Range</th>
                     <th>Posted</th>
                     <th>Actions</th>
@@ -153,16 +164,12 @@
                         <td>$<%= job.minprice %> - $<%= job.maxprice %></td>
                         <td><%= diffDays %> days ago</td>
                         <td>
-                            <% if (job.isFavorite) { %>
-                                <form action="/remove-favorite/<%= job.job_id %>" method="POST">
-                                    <button type="submit" class="unfavorite-button">Unfavorite</button>
-                                </form>
-                            <% } else { %>
-                                <form action="/add-favorite/<%= job.job_id %>" method="POST">
-                                    <button type="submit" class="favorite-button">Favorite</button>
-                                </form>
-                            <% } %>
-                            <a href="/delete-job/<%= job.job_id %>" class="delete-button">Delete</a>
+                            <form action="/toggle-favorite/<%= job.job_id %>" method="POST">
+                                <button type="submit" class="action-button">
+                                    <%= job.is_favorite ? 'Unfavorite' : 'Favorite' %>
+                                </button>
+                            </form>
+                            <a href="/delete-job/<%= job.job_id %>" class="action-button delete-button">Delete</a>
                         </td>
                     </tr>
                 <% }) %>
@@ -171,6 +178,6 @@
             <p>No job listings available.</p>
         <% } %>
     </div>
-    <%- include ('../partials/footer') %>
+    <%- include('../partials/footer') %>
 </body>
 </html>

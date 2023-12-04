@@ -167,20 +167,35 @@ app.get('/jobs', async (req, res) => {
     let jobs;
 
     let query = 'SELECT * FROM jobs';
-    if (searchQuery) {
-      query += ` WHERE name ILIKE $1 OR description ILIKE $1`;
-    }
-    if (sort) {
-      if (sort === 'minPrice' || sort === 'maxPrice' || sort === 'posted_on') {
-        query += ` ORDER BY ${sort} DESC`;
-      }
-    }
+    let queryParams = [];
 
     if (searchQuery) {
-      jobs = await db.any(query, [`%${searchQuery}%`]);
-    } else {
-      jobs = await db.any(query);
+      query += ` WHERE (name ILIKE $1 OR description ILIKE $1)`;
+      queryParams.push(`%${searchQuery}%`);
     }
+
+    switch (sort) {
+      case 'favorites':
+        query += searchQuery ? ' AND' : ' WHERE';
+        query += ' is_favorite = TRUE';
+        query += ' ORDER BY posted_on DESC'; 
+        break;
+      case 'price_high':
+        query += ' ORDER BY maxPrice DESC';
+        break;
+      case 'price_low':
+        query += ' ORDER BY minPrice ASC';
+        break;
+      case 'newest':
+        query += ' ORDER BY posted_on DESC';
+        break;
+      case 'oldest':
+        query += ' ORDER BY posted_on ASC';
+        break;
+  
+    }
+
+    jobs = await db.any(query, queryParams);
 
     res.render('pages/jobs', { jobs: jobs });
   } catch (error) {
@@ -188,6 +203,7 @@ app.get('/jobs', async (req, res) => {
     res.status(500).send('Error retrieving jobs');
   }
 });
+
 
 
 // POST route for submitting a job
@@ -238,33 +254,17 @@ app.get('/delete-job/:jobId', async (req, res) => {
   }
 });
 
-// Route to add a job to favorites
-app.post('/add-favorite/:jobId', async (req, res) => {
+app.post('/toggle-favorite/:jobId', async (req, res) => {
   try {
-      const jobId = req.params.jobId;
-      const username = req.session.user.username;
-      await db.none('INSERT INTO favorites(username, job_id) VALUES($1, $2)', [username, jobId]);
-      res.redirect('/jobs');
+    const jobId = req.params.jobId;
+    const toggleFavoriteQuery = `UPDATE jobs SET is_favorite = NOT is_favorite WHERE job_id = $1`;
+    await db.none(toggleFavoriteQuery, [jobId]);
+    res.redirect('/jobs');
   } catch (error) {
-      console.error('Error adding favorite:', error.message);
-      res.status(500).send('Error adding favorite');
+    console.error('Error toggling favorite status:', error.message);
+    res.status(500).send('Error toggling favorite status');
   }
 });
-
-// Route to remove a job from favorites
-app.post('/remove-favorite/:jobId', async (req, res) => {
-  try {
-      const jobId = req.params.jobId;
-      const username = req.session.user.username;
-      await db.none('DELETE FROM favorites WHERE username = $1 AND job_id = $2', [username, jobId]);
-      res.redirect('/jobs');
-  } catch (error) {
-      console.error('Error removing favorite:', error.message);
-      res.status(500).send('Error removing favorite');
-  }
-});
-
-
 
 // API route for Logout
 app.get('/logout', (req, res) => {
