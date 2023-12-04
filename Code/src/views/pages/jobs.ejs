@@ -148,6 +148,7 @@
                     <th>Requester</th>
                     <th>Description/Email</th>
                     <th>Price Range</th>
+                    <th>Requester Email</th>
                     <th>Posted</th>
                     <th>Actions</th>
                 </tr>
@@ -162,6 +163,7 @@
                         <td><%= job.requester %></td>
                         <td><%= job.description %></td>
                         <td>$<%= job.minprice %> - $<%= job.maxprice %></td>
+                        <td><%= job.email %></td>
                         <td><%= diffDays %> days ago</td>
                         <td>
                             <form action="/toggle-favorite/<%= job.job_id %>" method="POST">
