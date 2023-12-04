@@ -64,9 +64,9 @@
             background-color: #f2f2f2;
         }
 
-        .delete-button {
+        .delete-button, .favorite-button, .unfavorite-button {
             color: white;
-            background-color: #ff4d4d;
+            background-color: #007bff;
             border: none;
             padding: 5px 10px;
             text-align: center;
@@ -80,6 +80,10 @@
 
         .delete-button:hover {
             background-color: #ff3333;
+        }
+
+        .favorite-button:hover, .unfavorite-button:hover {
+            background-color: #0056b3;
         }
 
         .search-container {
@@ -133,15 +137,33 @@
                     <th>Requester</th>
                     <th>Description</th>
                     <th>Price Range</th>
-                    <th>Delete</th>
+                    <th>Posted</th>
+                    <th>Actions</th>
                 </tr>
-                <% jobs.forEach(job => { %>
+                <% jobs.forEach(job => { 
+                    const postedDate = new Date(job.posted_on);
+                    const currentDate = new Date();
+                    const diffTime = Math.abs(currentDate - postedDate);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                %>
                     <tr>
                         <td><%= job.name %></td>
                         <td><%= job.requester %></td>
                         <td><%= job.description %></td>
                         <td>$<%= job.minprice %> - $<%= job.maxprice %></td>
-                        <td><a href="/delete-job/<%= job.job_id %>" class="delete-button">Delete</a></td>
+                        <td><%= diffDays %> days ago</td>
+                        <td>
+                            <% if (job.isFavorite) { %>
+                                <form action="/remove-favorite/<%= job.job_id %>" method="POST">
+                                    <button type="submit" class="unfavorite-button">Unfavorite</button>
+                                </form>
+                            <% } else { %>
+                                <form action="/add-favorite/<%= job.job_id %>" method="POST">
+                                    <button type="submit" class="favorite-button">Favorite</button>
+                                </form>
+                            <% } %>
+                            <a href="/delete-job/<%= job.job_id %>" class="delete-button">Delete</a>
+                        </td>
                     </tr>
                 <% }) %>
             </table>

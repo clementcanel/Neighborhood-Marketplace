@@ -15,4 +15,12 @@ CREATE TABLE jobs(
     requester VARCHAR(50) NOT NULL REFERENCES users (username) ON DELETE CASCADE,
     minPrice DECIMAL,
     maxPrice DECIMAL
+    posted_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE favorites (
+    favorite_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL REFERENCES users(username),
+    job_id INT NOT NULL REFERENCES jobs(job_id)
+);
+

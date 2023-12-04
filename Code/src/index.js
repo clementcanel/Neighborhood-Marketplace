@@ -86,7 +86,7 @@ app.post('/register', async (req, res) => {
 
     // To-DO: Insert username and hashed password into the 'users' table
     await db.none(`INSERT INTO users(username, email, password) VALUES ($1, $2, $3)`,
-    [req.body.username, req.body.email, hash]);
+      [req.body.username, req.body.email, hash]);
     res.redirect('/login');
 
   } catch (error) {
@@ -105,33 +105,33 @@ app.get('/login', (req, res) => {
 
 
 app.post('/login', async (req, res) => {
-    //hash the password using bcrypt library
-    try {
-        const query = `select * from users where username = $1`;
-        // To-DO: Insert username and hashed password into the 'users' table
-        const user = await db.oneOrNone(query, req.body.username);
-        if(!user) {
-          return res.status(401).render('pages/register', {
-            error: true,
-            message: "Incorrect username or password."
-        });
-        }
-        const match = await bcrypt.compare(req.body.password, user.password);
-        if (!match) {
-          return res.status(401).render('pages/register', {
-            error: true,
-            message: "Incorrect username or password."
-        });
-        }
-        req.session.user = user;
-        req.session.save();
-        res.redirect('/home');
-    } catch (error) {
-        res.render("pages/register", {
-            error: true,
-            message: error.message,
-        });
+  //hash the password using bcrypt library
+  try {
+    const query = `select * from users where username = $1`;
+    // To-DO: Insert username and hashed password into the 'users' table
+    const user = await db.oneOrNone(query, req.body.username);
+    if (!user) {
+      return res.status(401).render('pages/register', {
+        error: true,
+        message: "Incorrect username or password."
+      });
     }
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) {
+      return res.status(401).render('pages/register', {
+        error: true,
+        message: "Incorrect username or password."
+      });
+    }
+    req.session.user = user;
+    req.session.save();
+    res.redirect('/home');
+  } catch (error) {
+    res.render("pages/register", {
+      error: true,
+      message: error.message,
+    });
+  }
 });
 const auth = (req, res, next) => {
   if (!req.session.user) {
@@ -163,12 +163,25 @@ app.get('/about', (req, res) => {
 app.get('/jobs', async (req, res) => {
   try {
     const searchQuery = req.query.search;
+    const sort = req.query.sort;
     let jobs;
+
+    let query = 'SELECT * FROM jobs';
     if (searchQuery) {
-      jobs = await db.any('SELECT * FROM jobs WHERE name ILIKE $1 OR description ILIKE $1', [`%${searchQuery}%`]);
-    } else {
-      jobs = await db.any('SELECT * FROM jobs');
+      query += ` WHERE name ILIKE $1 OR description ILIKE $1`;
     }
+    if (sort) {
+      if (sort === 'minPrice' || sort === 'maxPrice' || sort === 'posted_on') {
+        query += ` ORDER BY ${sort} DESC`;
+      }
+    }
+
+    if (searchQuery) {
+      jobs = await db.any(query, [`%${searchQuery}%`]);
+    } else {
+      jobs = await db.any(query);
+    }
+
     res.render('pages/jobs', { jobs: jobs });
   } catch (error) {
     console.error('ERROR:', error.message || error);
@@ -187,12 +200,12 @@ app.post('/submit-job', async (req, res) => {
       VALUES ($1, $2, $3, $4, $5);`;
 
     await db.none(insertJobQuery, [
-      jobTitle, 
-      jobDescription, 
-      req.session.user.username, 
-     
-      null, 
-      jobSalary 
+      jobTitle,
+      jobDescription,
+      req.session.user.username,
+
+      null,
+      jobSalary
     ]);
 
     res.redirect('/jobs');
@@ -206,7 +219,7 @@ app.post('/submit-job', async (req, res) => {
 app.get('/delete-job/:jobId', async (req, res) => {
   try {
     const jobId = req.params.jobId;
-    
+
     const job = await db.oneOrNone('SELECT * FROM jobs WHERE job_id = $1', jobId);
 
     if (!job) {
@@ -224,6 +237,33 @@ app.get('/delete-job/:jobId', async (req, res) => {
     res.status(500).send('Error deleting job: ' + error.message);
   }
 });
+
+// Route to add a job to favorites
+app.post('/add-favorite/:jobId', async (req, res) => {
+  try {
+      const jobId = req.params.jobId;
+      const username = req.session.user.username;
+      await db.none('INSERT INTO favorites(username, job_id) VALUES($1, $2)', [username, jobId]);
+      res.redirect('/jobs');
+  } catch (error) {
+      console.error('Error adding favorite:', error.message);
+      res.status(500).send('Error adding favorite');
+  }
+});
+
+// Route to remove a job from favorites
+app.post('/remove-favorite/:jobId', async (req, res) => {
+  try {
+      const jobId = req.params.jobId;
+      const username = req.session.user.username;
+      await db.none('DELETE FROM favorites WHERE username = $1 AND job_id = $2', [username, jobId]);
+      res.redirect('/jobs');
+  } catch (error) {
+      console.error('Error removing favorite:', error.message);
+      res.status(500).send('Error removing favorite');
+  }
+});
+
 
 
 // API route for Logout
