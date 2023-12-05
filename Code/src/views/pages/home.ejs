@@ -1,107 +1,89 @@
-    <!DOCTYPE html>
-    <html>
-    
-    <head>
-        <title>Neighborhood Service Exchange</title>
-        <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                margin: 0;
-                padding: 0;
-                background: #f4f4f4;
-                color: #333;
-            }
-            header {
-                background: #333;
-                color: #fff;
-                padding: 10px 20px;
-                text-align: center;
-            }
-            nav {
-                background: #555;
-                padding: 10px 20px;
-            }
-            nav a {
-                color: #fff;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-            nav a:hover {
-                text-decoration: underline;
-            }
-            .content, .container {
-                padding: 20px;
-            }
-            .container {
-                max-width: 400px;
-                margin: 50px auto;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            }
-            form {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
-            .form-group {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            label {
-                font-weight: bold;
-            }
-            input[type="text"],
-            input[type="password"] {
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 100%;
-            }
-            button {
-                padding: 10px 20px;
-                background-color: #007BFF;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-            button:hover {
-                background-color: #0056b3;
-            }
-            p {
-                margin-top: 20px;
-                text-align: center;
-            }
-            a {
-                color: #007BFF;
-            }
-        </style>
-    </head>
-    
-    <body>
-        <%- include ('../partials/header') %>
-        <%- include ('../partials/navbar') %>
-    
-        <main>
-            <div class="container">
-                <form action="/login" method="POST">
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-                <p>Don't have an account? <a href="/register">Register here</a></p>
-            </div>
-        </main>
-    
-        <%- include ('../partials/footer') %>
-    </body>
-    
-    </html>
-    
+<%- include ('../partials/header') %>
+<%- include ('../partials/navbar') %>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #000;
+    color: #fff;
+  }
+
+  header {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #333;
+    padding: 10px;
+  }
+
+  .content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+  }
+
+  h2 {
+    color: #000;
+  }
+
+  p {
+    margin-top: 20px;
+    text-align: justify;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #333;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+
+<body>
+  <header>
+    <h1>Neighborhood Service Exchange</h1>
+  </header>
+  <nav>
+    <button onclick="redirectToPage('/jobs')">Search Jobs</button>
+    <button onclick="redirectToPage('/post')">Post a Job</button>
+  </nav>
+  <div class="content">
+    <!-- main content here -->
+    <h2>This platform connects people in the neighborhood to job opportunities and services.</h2>
+  </div>
+</body>
+
+<%- include ('../partials/footer') %>
