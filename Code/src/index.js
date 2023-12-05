@@ -197,6 +197,7 @@ app.get('/jobs', async (req, res) => {
 
     jobs = await db.any(query, queryParams);
 
+
     res.render('pages/jobs', { jobs: jobs });
   } catch (error) {
     console.error('ERROR:', error.message || error);
@@ -212,15 +213,14 @@ app.post('/submit-job', async (req, res) => {
     const { jobTitle, jobDescription, jobLocation, jobSalary } = req.body;
 
     const insertJobQuery = `
-      INSERT INTO jobs (name, description, requester, minPrice, maxPrice)
+      INSERT INTO jobs (name, description, requester, email, price)
       VALUES ($1, $2, $3, $4, $5);`;
 
     await db.none(insertJobQuery, [
       jobTitle,
       jobDescription,
       req.session.user.username,
-
-      null,
+      req.session.user.email,
       jobSalary
     ]);
 

@@ -15,8 +15,7 @@ CREATE TABLE jobs(
     description VARCHAR(200) NOT NULL,
     requester VARCHAR(50) REFERENCES users(username) ON DELETE CASCADE,
     email VARCHAR(50) REFERENCES users(email) ON DELETE CASCADE,
-    minPrice DECIMAL,
-    maxPrice DECIMAL,
+    price DECIMAL,
     posted_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     is_favorite BOOLEAN DEFAULT FALSE
 );
