@@ -213,12 +213,13 @@ app.post('/submit-job', async (req, res) => {
     const { jobTitle, jobDescription, jobLocation, jobSalary } = req.body;
 
     const insertJobQuery = `
-      INSERT INTO jobs (name, description, requester, email, price)
-      VALUES ($1, $2, $3, $4, $5);`;
+      INSERT INTO jobs (name, description,location, requester, email, price)
+      VALUES ($1, $2, $3, $4, $5,$6);`;
 
     await db.none(insertJobQuery, [
       jobTitle,
       jobDescription,
+      jobLocation,
       req.session.user.username,
       req.session.user.email,
       jobSalary

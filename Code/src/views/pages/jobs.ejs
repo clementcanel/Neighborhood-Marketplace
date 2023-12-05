@@ -143,9 +143,9 @@
                 <tr>
                     <th>Job Name</th>
                     <th>Requester</th>
-                    <th>Description/Email</th>
+                    <th>Description</th>
+                    <th>Location</th>
                     <th>Price</th>
-                    <th>Requester Email</th>
                     <th>Posted</th>
                     <th>Actions</th>
                 </tr>
@@ -157,10 +157,11 @@
                 %>
                     <tr>
                         <td><%= job.name %></td>
-                        <td><%= job.requester %></td>
+                        <td><%= job.requester %> <br> <%= job.email %></td>
                         <td><%= job.description %></td>
+                        <td><%= job.location %></td>
                         <td>$<%= job.price %> </td>
-                        <td><%= job.email %></td>
+                       
                         <td><%= diffDays %> days ago</td>
                         <td>
                             <form action="/toggle-favorite/<%= job.job_id %>" method="POST">

@@ -13,6 +13,7 @@ CREATE TABLE jobs(
     job_id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(200) NOT NULL,
+    location VARCHAR (100),
     requester VARCHAR(50) REFERENCES users(username) ON DELETE CASCADE,
     email VARCHAR(50) REFERENCES users(email) ON DELETE CASCADE,
     price DECIMAL,
