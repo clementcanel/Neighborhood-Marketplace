@@ -181,10 +181,10 @@ app.get('/jobs', async (req, res) => {
         query += ' ORDER BY posted_on DESC'; 
         break;
       case 'price_high':
-        query += ' ORDER BY maxPrice DESC';
+        query += ' ORDER BY price DESC';
         break;
       case 'price_low':
-        query += ' ORDER BY minPrice ASC';
+        query += ' ORDER BY price ASC';
         break;
       case 'newest':
         query += ' ORDER BY posted_on DESC';
