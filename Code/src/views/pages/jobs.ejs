@@ -169,7 +169,9 @@
                                     <%= job.is_favorite ? 'Unfavorite' : 'Favorite' %>
                                 </button>
                             </form>
-                            <a href="/delete-job/<%= job.job_id %>" class="action-button delete-button">Delete</a>
+                            <% if (currentUser && currentUser.username === job.requester) { %>
+                                <a href="/delete-job/<%= job.job_id %>" class="action-button delete-button">Delete</a>
+                            <% } %>                            
                         </td>
                     </tr>
                 <% }) %>

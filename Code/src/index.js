@@ -173,37 +173,43 @@ app.get('/jobs', async (req, res) => {
       query += ` WHERE (name ILIKE $1 OR description ILIKE $1)`;
       queryParams.push(`%${searchQuery}%`);
     }
+    if (sort) {
+      switch (sort) {
+        case 'favorites':
+          query += searchQuery ? ' AND' : ' WHERE';
+          query += ' is_favorite = TRUE';
+          break;
+        case 'price_high':
+          query += ' ORDER BY price DESC';
+          break;
+        case 'price_low':
+          query += ' ORDER BY price ASC';
+          break;
+        case 'newest':
+          query += ' ORDER BY posted_on DESC';
+          break;
+        case 'oldest':
+          query += ' ORDER BY posted_on ASC';
+          break;
+      }
+    }
 
-    switch (sort) {
-      case 'favorites':
-        query += searchQuery ? ' AND' : ' WHERE';
-        query += ' is_favorite = TRUE';
-        query += ' ORDER BY posted_on DESC'; 
-        break;
-      case 'price_high':
-        query += ' ORDER BY price DESC';
-        break;
-      case 'price_low':
-        query += ' ORDER BY price ASC';
-        break;
-      case 'newest':
-        query += ' ORDER BY posted_on DESC';
-        break;
-      case 'oldest':
-        query += ' ORDER BY posted_on ASC';
-        break;
-  
+    if (!sort) {
+      query += ' ORDER BY posted_on DESC';
     }
 
     jobs = await db.any(query, queryParams);
 
-
-    res.render('pages/jobs', { jobs: jobs });
+    res.render('pages/jobs', { 
+      jobs: jobs, 
+      currentUser: req.session.user 
+    });
   } catch (error) {
     console.error('ERROR:', error.message || error);
     res.status(500).send('Error retrieving jobs');
   }
 });
+
 
 
 
