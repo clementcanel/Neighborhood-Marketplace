@@ -28,3 +28,10 @@ login page, jobs page, register page all fixed and working now
 Demoed the jobs page
 talked about getting the post jobs part working,
 close issues that are done
+
+MEETING 4 12/5
+Talked about making the presentation
+website is mostly done
+fix profile page
+make architecture diagram
+
