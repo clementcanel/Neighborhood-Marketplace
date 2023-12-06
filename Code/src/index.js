@@ -285,6 +285,21 @@ app.get('/logout', (req, res) => {
   });
 });
 
+app.get('/myjobs', async (req, res) => {
+  try {
+    if (!req.session.user) {
+      return res.status(401).send('User not logged in');
+    }
+
+    const userJobs = await db.any('SELECT * FROM jobs WHERE requester = $1', [req.session.user.username]);
+    res.render('pages/myjobs', { userJobs: userJobs }); 
+  } catch (error) {
+    console.error('Error fetching user jobs:', error.message);
+    res.status(500).send('Error fetching your jobs');
+  }
+});
+
+
 
 // *****************************************************
 // <!-- Section 5 : Start Server-->
