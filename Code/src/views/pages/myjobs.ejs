@@ -1,0 +1,158 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <title>My Posted Jobs - Neighborhood Service Exchange</title>
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background: #f4f4f4;
+                    color: #333;
+                }
+
+                header {
+                    background: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    text-align: center;
+                }
+
+                nav {
+                    background: #555;
+                    padding: 10px 20px;
+                }
+
+                nav a {
+                    color: #fff;
+                    text-decoration: none;
+                    margin: 0 10px;
+                }
+
+                nav a:hover {
+                    text-decoration: underline;
+                }
+
+                .content {
+                    padding: 20px;
+                }
+
+                table {
+                    width: 100%;
+                    margin-top: 20px;
+                    border-collapse: collapse;
+                }
+
+                table,
+                th,
+                td {
+                    border: 1px solid #ddd;
+                }
+
+                th,
+                td {
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                th {
+                    background: #333;
+                    color: #fff;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+
+                .action-button {
+                    color: white;
+                    background-color: #007bff;
+                    border: none;
+                    padding: 5px 10px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 14px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                }
+
+                .action-button:hover {
+                    background-color: #0056b3;
+                }
+
+                .delete-button:hover {
+                    background-color: #ff3333;
+                }
+
+                .button-container {
+                    text-align: center;
+                    margin-top: 20px;
+                    
+                }
+            </style>
+        </head>
+
+        <body>
+            <header>
+                <h1>Neighborhood Service Exchange</h1>
+            </header>
+
+            <div class="content">
+                <h2>My Posted Jobs</h2>
+                <div class="button-container">
+                    <a href="/jobs" class="action-button">All Job Listings</a>
+                </div>
+
+                <% if (userJobs && userJobs.length> 0) { %>
+                    <table>
+                        <tr>
+                            <th>Job Name</th>
+                            <th>Description</th>
+                            <th>Location</th>
+                            <th>Price</th>
+                            <th>Posted</th>
+                            <th>Actions</th>
+                        </tr>
+                        <% userJobs.forEach(job=> {
+                            const postedDate = new Date(job.posted_on);
+                            const currentDate = new Date();
+                            const diffTime = Math.abs(currentDate - postedDate);
+                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            %>
+                            <tr>
+                                <td>
+                                    <%= job.name %>
+                                </td>
+                                <td>
+                                    <%= job.description %>
+                                </td>
+                                <td>
+                                    <%= job.location %>
+                                </td>
+                                <td>$<%= job.price %>
+                                </td>
+                                <td>
+                                    <%= diffDays %> days ago
+                                </td>
+                                <td>
+                                    <a href="/delete-job/<%= job.job_id %>"
+                                        class="action-button delete-button">Delete</a>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </table>
+                    <% } else { %>
+                        <p>No jobs posted by you.</p>
+                        <% } %>
+            </div>
+
+            <%- include('../partials/footer') %>
+        </body>
+
+        </html>

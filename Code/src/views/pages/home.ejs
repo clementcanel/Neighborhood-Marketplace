@@ -1,89 +1,106 @@
-<%- include ('../partials/header') %>
-<%- include ('../partials/navbar') %>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #000;
-    color: #fff;
-  }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Neighborhood Service Exchange - Home</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
 
-  header {
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
 
-  nav {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px;
-  }
+        nav {
+            background: #555;
+            padding: 10px 20px;
+        }
 
-  .content {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color: #333;
-  }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-  h2 {
-    color: #000;
-  }
+        nav a:hover {
+            text-decoration: underline;
+        }
 
-  p {
-    margin-top: 20px;
-    text-align: justify;
-  }
+        .content {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
 
-  button {
-    padding: 10px 20px;
-    background-color: #000;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+        h2 {
+            color: #555;
+        }
 
-  button:hover {
-    background-color: #333;
-  }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
 
-  a {
-    color: #000;
-    text-decoration: none;
-  }
+        .button {
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: 2px solid #444;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+        }
 
-  footer {
-    background-color: #000;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-</style>
+        .button:hover {
+            background: #555;
+            border-color: #666;
+        }
 
+        .button-container {
+            margin-top: 30px;
+        }
+    </style>
+</head>
 <body>
-  <header>
-    <h1>Neighborhood Service Exchange</h1>
-  </header>
-  <nav>
-    <button onclick="redirectToPage('/jobs')">Search Jobs</button>
-    <button onclick="redirectToPage('/post')">Post a Job</button>
-  </nav>
-  <div class="content">
-    <!-- main content here -->
-    <h2>This platform connects people in the neighborhood to job opportunities and services.</h2>
-  </div>
-</body>
+    <header>
+        <h1>Neighborhood Service Exchange</h1>
+    </header>
 
-<%- include ('../partials/footer') %>
+    <nav>
+        <!-- Navigation content -->
+    </nav>
+
+    <div class="content">
+        <h2>Welcome to Your Neighborhood Service Exchange Platform</h2>
+        <p>
+            Discover a vibrant community where neighbors help each other by offering a variety of services and jobs. 
+            Whether you're looking for someone to assist with home repairs, seeking tutoring services, or offering your 
+            gardening skills, our platform is designed to bring local talent and needs together. Let's build a stronger, 
+            more connected neighborhood, one service at a time.
+        </p>
+
+        <div class="button-container">
+            <a href="/jobs" class="button">Search Jobs</a>
+            <a href="/post" class="button">Post a Job</a>
+        </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
