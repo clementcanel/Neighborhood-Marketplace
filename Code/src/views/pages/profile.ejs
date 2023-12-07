@@ -1,26 +1,81 @@
-<%- include ('../partials/header') %>
-<%- include ('../partials/navbar') %>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
 
 <main>
-    <div class="container">
-        <h1>Welcome, <%= username %></h1>
-        <section id="user_information">
-            <h2>Your User Information</h2>
-            <!-- Display user information -->
-            <p>Name: <%= username %></p>
-            <!-- Other user information... -->
-        </section>
-        <section id="edit_profile">
-            <h2>Edit Your Profile</h2>
-            <!-- Form for editing profile -->
-            <form action="/update-profile" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="<%= username %>" required/><br><br>
-                <!-- Other input fields with default values... -->
-                <input type="submit" value="Save Changes">
-            </form>
-        </section>
+    <div class="content">
+        <h2>Your User Information</h2>
+        <table class="user-info">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+            <tr>
+                <td><%= username %></td>
+                <td><%= email %></td>
+                <td>********</td> <!-- You can replace ******** with actual password if needed -->
+            </tr>
+        </table>
     </div>
 </main>
 
-<%- include ('../partials/footer') %>
+<%- include('../partials/footer') %>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f4;
+        color: #333;
+    }
+
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+    }
+
+    nav {
+        background: #555;
+        padding: 10px 20px;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .content {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .user-info {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .user-info th, .user-info td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .user-info th {
+        background: #333;
+        color: #fff;
+    }
+
+    .user-info tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>

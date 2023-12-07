@@ -152,9 +152,6 @@ app.get('/home', (req, res) => {
 app.get('/post', (req, res) => {
   res.render('pages/post')
 });
-app.get('/profile', (req, res) => {
-  res.render('pages/profile')
-});
 
 app.get('/about', (req, res) => {
   res.render('pages/about')
@@ -272,6 +269,40 @@ app.post('/toggle-favorite/:jobId', async (req, res) => {
     res.status(500).send('Error toggling favorite status');
   }
 });
+app.post('/update-profile', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    let hashedPassword = password ? await bcrypt.hash(password, 10) : req.session.user.password;
+
+    await db.none(`UPDATE users SET username = $1, email = $2, password = $3 WHERE username = $4`, [username, email, hashedPassword, req.session.user.username]);
+
+    // Update session information
+    req.session.user.username = username;
+    req.session.user.email = email;
+    req.session.user.password = hashedPassword;
+
+    res.redirect('/profile');
+  } catch (error) {
+    console.error('Error updating profile:', error.message);
+    res.status(500).send('Error updating profile');
+  }
+});
+app.get('/profile', async (req, res) => {
+  try {
+    const userJobs = await db.any('SELECT * FROM jobs WHERE requester = $1', [req.session.user.username]);
+    res.render('pages/profile', { 
+      username: req.session.user.username,
+      email: req.session.user.email,
+      userJobs: userJobs 
+    }); 
+  } catch (error) {
+    console.error('Error fetching user jobs:', error.message);
+    res.status(500).send('Error fetching your jobs');
+  }
+});
+
+
+
 
 // API route for Logout
 app.get('/logout', (req, res) => {
