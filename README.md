@@ -13,40 +13,21 @@ Jonah Tatterson jota5800@colorado.edu jota5800
 Mohamed Mohamedali momo4179@colorado.edu antworm21
 
 Description: Neighborhood Services Exchange Platform. A localized platform where neighbors can offer, exchange, or barter services. SQL databases can hold user profiles, service listings, reviews, transaction histories, and chats. HTML & CSS. NodeJS can manage real-time notifications, location-based search, and user interactions. Integrate Google Maps for localized search, messaging APIs for notifications.
-
-
 Vision Statement: For Local Consumers, Who need services. The neighborhood service exchange is a marketplace that safely, exchange services and goods also certified. Unlike Nextdoor, our product primarily focuses on services and so it’s better at that.
 
-Using agile methodology and a Kanban board
+PostgreSQL - Database
+EJS - UI
+HTML - UI
+GitHub - Project Management and Version Control
+VSCode - IDE
+NodeJS - Application Server
+Azure - Deployment Environment
+Docker - Containerization
 
-Communicating through text
+Prerequisites: Docker, GitHub, 
 
-UML
-https://docs.google.com/drawings/d/18BT1FOwhJVCmUSslcMsSYRVu0SS8a9Sb7WHMubTaoKg/edit?usp=sharing 
+To Run Locally: Clone the repo to local machine, docker compose -up in terminal, go to localhost:3000 in browser
 
-Meeting Plans - 
-Monday  → 5:30 PM
-Tuesday → 1:00 PM
-Friday → 10:00 PM
-Sunday → 11:00 AM
-
-
-
-
-Overall
- GUI, a database, API data source(optional), a middle layer connecting your UI to your data.
-
-1.safety 
-2. neighborly/community
-
-Name Ideas
-Great Neighbor
-Friendly Neighbor
-
-Wireframe:
-https://lucid.app/lucidchart/ebeee19a-02fe-4976-85cf-55efdafe2bb4/edit?viewport_loc=-2185%2C-890%2C2569%2C1562%2C0_0&invitationId=inv_115a273e-89ce-4757-9078-c81999e10d16
-
-Link to Google Doc 
-https://docs.google.com/document/d/1U7eGfses0jIhPSrv3PT-4bGBbwqAmpRltvlwO6isLZc/edit?usp=sharing
+To Run Tests: Clone the repo to local machine, edit docker-compose.yaml the "command:" section and change it from 'npm start' to 'npm run testandrun'
 
 Website Link: http://recitation-14-team-04.eastus.cloudapp.azure.com:3000/home
