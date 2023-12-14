@@ -32,7 +32,7 @@ Docker - Containerization
 
 Prerequisites: Docker, GitHub, 
 
-To Run Locally: Clone the repo to local machine, docker compose -up in terminal, go to localhost:3000 in browser
+To Run Locally: Clone the repo to local machine, docker compose up in terminal, go to localhost:3000 in browser
 
 To Run Tests: Clone the repo to local machine, edit docker-compose.yaml the "command:" section and change it from 'npm start' to 'npm run testandrun'
 
