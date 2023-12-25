@@ -16,10 +16,6 @@ For Local Consumers who need services, the Neighborhood Service Exchange is a ma
 - **Azure**: Cloud Deployment Environment
 - **Docker**: Containerization
 
-## Prerequisites
-- Docker
-- GitHub Account
-
 ## Installation & Running the Application
 
 ### To Run Locally
